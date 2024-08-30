@@ -1,6 +1,12 @@
+import { usePatientStore } from "../store/store"
+
 
 export const PatientList = () => {
-  return (
-    <div>PatientList</div>
-  )
+
+    const patients = usePatientStore(state => state.patients)
+
+    console.log(patients)
+    return (
+        <div>patients</div>
+    )
 }
