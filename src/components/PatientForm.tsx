@@ -38,7 +38,7 @@ export const PatientForm = () => {
 					/>
 
 					{errors.name && (
-						<Error>{errors.name.message as string}
+						<Error>{errors.name?.message as string}
 						</Error>
 					)}
 				</div>
@@ -51,20 +51,39 @@ export const PatientForm = () => {
 						id="caretaker"
 						className="w-full p-3  border border-gray-100"  
 						type="text" 
-						placeholder="Nombre del Propietario" 
+						placeholder="Nombre del Propietario"
+						{...register('caretaker', {
+							required: 'El Propietario es obligatorio'
+						})} 
 					/>
+					{errors.name && (
+						<Error>{errors.caretaker?.message as string}
+						</Error>
+					)}
 				</div>
 
 				<div className="mb-5">
-				<label htmlFor="email" className="text-sm uppercase font-bold">
-					Email 
-				</label>
-				<input  
-					id="email"
-					className="w-full p-3  border border-gray-100"  
-					type="email" 
-					placeholder="Email de Registro" 
-				/>
+					<label htmlFor="email" className="text-sm uppercase font-bold">
+						Email 
+					</label>
+					<input  
+						id="email"
+						className="w-full p-3  border border-gray-100"  
+						type="email" 
+						placeholder="Email de Registro"
+						{...register("email", {
+							required: "El Email es Obligatorio",
+							pattern: {
+								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+								message: 'Email No Válido'
+							}
+						})}  
+					/>
+
+					{errors.email && (
+						<Error>{errors.email?.message as string}
+						</Error>
+					)}
 				</div>
 
 				<div className="mb-5">
@@ -75,7 +94,14 @@ export const PatientForm = () => {
 						id="date"
 						className="w-full p-3  border border-gray-100"  
 						type="date" 
+						{...register('date', {
+							required: 'La fecha de alta es obligatoria'
+						})} 
 					/>
+					{errors.date && (
+						<Error>{errors.date?.message?.toString()}
+						</Error>
+					)}
 				</div>
 				
 				<div className="mb-5">
@@ -86,7 +112,14 @@ export const PatientForm = () => {
 						id="symptoms"
 						className="w-full p-3  border border-gray-100"  
 						placeholder="Síntomas del paciente" 
-					></textarea>
+						{...register('symptoms', {
+							required: 'Los sintomas  son obligatorios'
+						})}
+					/>
+					{errors.symptoms && (
+						<Error>{errors.symptoms?.message?.toString()}
+						</Error>
+					)}
 				</div>
 
 				<input
