@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form"
 import { Error } from "./Error"
+import { DraftPatient } from "../types"
 
 export const PatientForm = () => {
   
-	const { register, handleSubmit, formState: {errors} } = useForm()
+	const { register, handleSubmit, formState: {errors} } = useForm<DraftPatient>()
 
-	const registerPatient = () => {
-		console.log('Nuevo paciente')
+	const registerPatient = (data: DraftPatient) => {
+		console.log(data)
 	}
 
 	return (
@@ -38,7 +39,7 @@ export const PatientForm = () => {
 					/>
 
 					{errors.name && (
-						<Error>{errors.name?.message as string}
+						<Error>{errors.name?.message}
 						</Error>
 					)}
 				</div>
@@ -57,7 +58,7 @@ export const PatientForm = () => {
 						})} 
 					/>
 					{errors.name && (
-						<Error>{errors.caretaker?.message as string}
+						<Error>{errors.caretaker?.message}
 						</Error>
 					)}
 				</div>
@@ -81,7 +82,7 @@ export const PatientForm = () => {
 					/>
 
 					{errors.email && (
-						<Error>{errors.email?.message as string}
+						<Error>{errors.email?.message}
 						</Error>
 					)}
 				</div>
@@ -99,7 +100,7 @@ export const PatientForm = () => {
 						})} 
 					/>
 					{errors.date && (
-						<Error>{errors.date?.message?.toString()}
+						<Error>{errors.date?.message}
 						</Error>
 					)}
 				</div>
@@ -117,7 +118,7 @@ export const PatientForm = () => {
 						})}
 					/>
 					{errors.symptoms && (
-						<Error>{errors.symptoms?.message?.toString()}
+						<Error>{errors.symptoms?.message}
 						</Error>
 					)}
 				</div>
